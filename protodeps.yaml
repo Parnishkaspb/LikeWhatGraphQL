@@ -1,0 +1,14 @@
+# protodeps.yaml — пины proto-файлов, синхронизируемых из исходного репозитория.
+#
+# `make generate` сверяет содержимое локального proto с содержимым файла
+# в исходном репозитории на закоммиченном хэше:
+#   - совпадает  -> генерация кода пропускается;
+#   - не совпадает -> proto обновляется, запускаются protoc и gqlgen.
+#
+# Поднять пин коммита:  make proto-update COMMIT=<sha>
+protos:
+  - name: like_what
+    repo: git@github.com:Parnishkaspb/LikeWhat.git   # исходный репозиторий с proto
+    file: like_what.proto                                # путь внутри исходного репозитория
+    commit: ЗАМЕНИ_НА_SHA                                # пин коммита исходного репозитория
+    local: like_what.proto                               # куда класть в этом репозитории

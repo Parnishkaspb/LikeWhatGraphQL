@@ -1,0 +1,132 @@
+# ---------- Common ----------
+
+
+# ---------- Manufacture ----------
+type Manufacture {
+  id: ID!
+  name: String!
+   createdAt: String!
+   updatedAt: String!
+  deletedAt: String
+}
+
+input ManufactureFilter {
+  """Наименование производителя поиск."""
+  nameLike: String
+  """Поиск по идентификаторам."""
+  idsIn: [ID!]
+}
+
+type ManufacturePage {
+  manufactures: [Manufacture!]!
+  totalCount: Int!
+  nextPage: Boolean!
+}
+
+# ---------- Tobacco ----------
+type Tobacco {
+  id: ID!
+  taste: String!
+  photo: String!
+  manufacture: Manufacture
+   createdAt: String!
+   updatedAt: String!
+  deletedAt: String
+}
+
+input TobaccoFilter {
+  taste: String
+  manufactureIds: [ID!]
+}
+
+# ---------- User ----------
+type User {
+  id: Int!
+  telegramId: Int!
+  nickName: String!
+  name: String!
+}
+
+# ---------- Recipe ----------
+type RecipeTobacco {
+  tobaccoId: ID!
+  """Percentage of the tobacco in the mix, e.g. 33.33."""
+  percent: Float!
+}
+
+type RecipeStep {
+  stepNumber: Int!
+  """Tobacco the step refers to; empty when the step concerns the whole mix."""
+  tobaccoId: ID
+  whatDo: String!
+}
+
+type Recipe {
+  id: ID!
+  userId: Int!
+  title: String!
+  """Composition of the mix: which tobacco and in which percentage."""
+  tobaccos: [RecipeTobacco!]!
+  """Ordered preparation steps."""
+  steps: [RecipeStep!]!
+   createdAt: String!
+   updatedAt: String!
+  deletedAt: String
+}
+
+input RecipeTobaccoInput {
+  tobaccoId: ID!
+  percent: Float!
+}
+
+input RecipeStepInput {
+  stepNumber: Int!
+  tobaccoId: ID
+  whatDo: String!
+}
+
+input RecipeFilter {
+  """Filter by author."""
+  userId: Int
+  """Filter by tobacco in the mix."""
+  tobaccoIdIn: [ID!]
+}
+
+# ---------- Queries ----------
+type Query {
+  """GetTobacco"""
+  tobacco(id: ID!): Tobacco!
+  """ListTobaccos"""
+  tobaccos(filter: TobaccoFilter): [Tobacco!]!
+  """ListManufactures"""
+  manufactures(filter: ManufactureFilter, perPage: Int, page: Int): ManufacturePage!
+  """GetUser"""
+  user(id: Int!): User!
+  """ListUsers"""
+  users: [User!]!
+  """GetRecipe"""
+  recipe(id: ID!): Recipe!
+  """ListRecipes"""
+  recipes(filter: RecipeFilter): [Recipe!]!
+}
+
+# ---------- Mutations ----------
+type Mutation {
+  """CreateTobacco"""
+  createTobacco(taste: String!, photo: String, manufactureId: ID!): Tobacco!
+  """CreateManufacture"""
+  createManufacture(name: String!): Manufacture!
+  """EditManufacture"""
+  editManufacture(id: ID!, name: String!): Manufacture!
+  """DeleteManufacture"""
+  deleteManufacture(id: ID!): DeleteManufactureResult!
+  """CreateUser"""
+  createUser(telegramId: Int!, nickName: String!, name: String!): User!
+  """CreateRecipe"""
+  createRecipe(userId: Int!, title: String!, tobaccos: [RecipeTobaccoInput!]!, steps: [RecipeStepInput!]): Recipe!
+}
+
+type DeleteManufactureResult {
+  isDeleted: Boolean!
+  message: String!
+}

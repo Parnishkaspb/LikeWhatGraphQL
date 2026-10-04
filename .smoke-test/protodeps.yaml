@@ -1,0 +1,5 @@
+protos:
+  - name: like_what
+    path: upstream/like_what.proto
+    commit: ABC123
+    local: like_what.proto
