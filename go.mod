@@ -4,6 +4,7 @@ go 1.26.1
 
 require (
 	github.com/99designs/gqlgen v0.17.95
+	github.com/Parnishkaspb/LikeWhat v0.0.0-20261004140516-1c92d8fa009e
 	github.com/vektah/gqlparser/v2 v2.5.37
 	google.golang.org/grpc v1.84.0
 	google.golang.org/protobuf v1.36.12
@@ -24,5 +25,5 @@ require (
 	golang.org/x/sys v0.47.0 // indirect
 	golang.org/x/text v0.41.0 // indirect
 	golang.org/x/tools v0.49.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20260706201446-f0a921348800 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20260831171406-18b4a7587f8a // indirect
 )

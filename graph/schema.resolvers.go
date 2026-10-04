@@ -9,10 +9,9 @@ import (
 	"context"
 	"fmt"
 
+	likewhat "github.com/Parnishkaspb/LikeWhat/pkg/like_what"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-
-	likewhat "github.com/Parnishkaspb/LikeWhatGraphQL/pkg/like_what"
 )
 
 // CreateTobacco is the resolver for the createTobacco field.
@@ -123,10 +122,10 @@ func (r *mutationResolver) CreateRecipe(ctx context.Context, userID int, title s
 	defer cancel()
 
 	resp, err := r.Clients.Recipe.CreateRecipe(callCtx, &likewhat.CreateRecipeRequest{
-		UserId:    int64(userID),
-		Title:     title,
-		Tobaccos:  reqTobaccos,
-		Steps:     reqSteps,
+		UserId:   int64(userID),
+		Title:    title,
+		Tobaccos: reqTobaccos,
+		Steps:    reqSteps,
 	})
 	if err != nil {
 		return nil, fmt.Errorf("CreateRecipe: %w", err)

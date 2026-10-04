@@ -10,5 +10,5 @@ protos:
   - name: like_what
     repo: git@github.com:Parnishkaspb/LikeWhat.git   # исходный репозиторий с proto
     file: like_what.proto                                # путь внутри исходного репозитория
-    commit: ЗАМЕНИ_НА_SHA                                # пин коммита исходного репозитория
+    commit: 1c92d8fa009e7480ad4fabd8dfdf098be0074922     # пин коммита исходного репозитория
     local: like_what.proto                               # куда класть в этом репозитории

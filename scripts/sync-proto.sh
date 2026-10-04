@@ -32,7 +32,11 @@ parse_deps() {
       else if (line ~ /^[[:space:]]*local:/)    { local  = trim(substr(line, index(line, ":") + 1)) }
       else if (line ~ /^[[:space:]]*path:/)     { path   = trim(substr(line, index(line, ":") + 1)) }
     }
-    function trim(s) { gsub(/^[[:space:]]+|[[:space:]]+$/, "", s); return s }
+    function trim(s) {
+      sub(/[[:space:]]+#.*$/, "", s)   # отрезаем inline-комментарий после значения
+      gsub(/^[[:space:]]+|[[:space:]]+$/, "", s)
+      return s
+    }
     function flush() { print name "|" repo "|" file "|" commit "|" local "|" path }
     END { if (name != "") flush() }
   ' "$DEPS_FILE"

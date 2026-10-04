@@ -6,21 +6,20 @@ import (
 	"context"
 	"time"
 
+	likewhat "github.com/Parnishkaspb/LikeWhat/pkg/like_what"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-
-	likewhat "github.com/Parnishkaspb/LikeWhatGraphQL/pkg/like_what"
 )
 
 // Clients объединяет клиентов всех сервисов из like_what.proto
 // поверх одного gRPC-соединения.
 type Clients struct {
-	Conn          *grpc.ClientConn
-	Tobacco       likewhat.TobaccoServiceClient
-	Manufacture   likewhat.ManufactureServiceClient
-	User          likewhat.UserServiceClient
-	Recipe        likewhat.RecipeServiceClient
-	callTimeout   time.Duration
+	Conn        *grpc.ClientConn
+	Tobacco     likewhat.TobaccoServiceClient
+	Manufacture likewhat.ManufactureServiceClient
+	User        likewhat.UserServiceClient
+	Recipe      likewhat.RecipeServiceClient
+	callTimeout time.Duration
 }
 
 // New создаёт клиентов gRPC-сервисов по адресу addr (например "localhost:50051").
