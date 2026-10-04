@@ -3,9 +3,8 @@ package graph
 import (
 	"time"
 
+	likewhat "github.com/Parnishkaspb/LikeWhat/pkg/like_what"
 	"google.golang.org/protobuf/types/known/timestamppb"
-
-	likewhat "github.com/Parnishkaspb/LikeWhatGraphQL/pkg/like_what"
 )
 
 // protoTime конвертирует proto Timestamp в RFC3339-строку.
